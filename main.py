@@ -44,7 +44,7 @@ def vegilight(vegetable):
     with urllib.request.urlopen(req) as res:
         ambdata = json.loads(res.read().decode('utf8'))
 
-    highmid,low=0,0,0
+    high,mid,low=0,0,0
     for i in range(1440):
         if ambdata[i]['d2'] > 1000:
             high += 1
