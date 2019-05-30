@@ -35,5 +35,12 @@ def now():
     msg = render_template('now', date=dtdata.strftime('%Y/%m/%d %H:%M:%S'),vib=ambdata[0]['d1'],light=ambdata[0]['d2'])
     return question(msg)
     
+@ask.intent("AskLightIntent")
+def vegilight(vegetable):
+    if vagetable == "インゲン"
+        return question("インゲン")
+    else
+        return question("モヒカン")
+        
 if __name__ == '__main__':
     app.run(debug=True)
