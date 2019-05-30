@@ -53,8 +53,8 @@ def vegilight(vegetable):
         else:
             mid += 1
 
-    dirpath = os.path.dirname(__file__)
-    with open(dirpath+"/lightVegiClass.csv") as csvfile:
+    csvpath = os.path.join(os.path.dirname(__file__), 'lightVegiClass.csv')
+    with open(csvpath) as csvfile:
         ldata = csv.reader(csvfile)
     vegclass = [row for row in ldata]
 
