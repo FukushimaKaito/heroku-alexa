@@ -26,6 +26,7 @@ def help():
 
 @ask.intent("AskNowdata")
 def now():
+    #最新1件
     url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1"
     req = urllib.request.Request(url)
     with urllib.request.urlopen(req) as res:
@@ -37,8 +38,23 @@ def now():
     
 @ask.intent("AskLightIntent")
 def vegilight(vegetable):
+    # 24H分
+    url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1440"
+    req = urllib.request.Request(url)
+    with urllib.request.urlopen(req) as res:
+        ambdata = json.loads(res.read().decode('utf8'))
+
+    highmid,low=0,0,0
+    for i in range(1440):
+        if ambdata[i]['d2'] > 1000:
+            high += 1
+        else if ambdata[i]['d2'] < 300:
+            low += 1
+        else:
+            mid += 1
+
     if vegetable == "インゲン":
-        return question("インゲン")
+        return question(vegetable.id)
     else:
         return question("モヒカン")
 
