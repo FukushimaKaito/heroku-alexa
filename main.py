@@ -4,6 +4,8 @@ import logging
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
 
+import createdata as cd
+
 app = Flask(__name__)
 ask = Ask(app, "/")
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
@@ -21,7 +23,7 @@ def help():
 
 @ask.intent("AskNowdata")
 def now():
-    data = createdata()
+    data = cd.createdata()
     msg = render_template('now', date=data[0]['created'],vib=data[0]['d1'],light=data[0]['d2'])
     return question(msg)
     

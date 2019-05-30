@@ -3,7 +3,7 @@
 import urllib.request
 import json
 
-def createdata()
+def createdata():
 	url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1"
 
 	req = urllib.request.Request(url)
@@ -11,3 +11,5 @@ def createdata()
 			ambdata = json.loads(res.read().decode('utf8'))
 	return(ambdata)
 
+if __name__ == '__main__':
+	
