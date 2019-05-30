@@ -56,7 +56,7 @@ def vegilight(vegetable):
     csvpath = os.path.join(os.path.dirname(__file__), 'lightVegiClass.csv')
     with open(csvpath) as csvfile:
         ldata = csv.reader(csvfile)
-    vegclass = [row for row in ldata]
+        vegclass = [row for row in ldata]
 
     # positive class
     if vegetable in vagclass[0]:
