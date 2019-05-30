@@ -104,7 +104,7 @@ def countcheck():
             low += 1
         else:
             mid += 1
-    msg = render_template('count')
+    msg = render_template('count',high=high,mid=mid,low=low)
     return question(msg)
 
 if __name__ == '__main__':
