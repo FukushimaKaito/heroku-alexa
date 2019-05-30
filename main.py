@@ -37,7 +37,7 @@ def now():
     return question(msg)
     
 @ask.intent("AskLightIntent")
-def vegilight(plantclass):
+def vegilight(Vegelight):
     # 24H分
     url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1440"
     req = urllib.request.Request(url)
@@ -85,7 +85,7 @@ def vegilight(plantclass):
             return question(msg)
     else:
         msg = render_template('light-missing')
-        return question("mag")
+        return question(msg)
 
 if __name__ == '__main__':
     app.run(debug=True)
