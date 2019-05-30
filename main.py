@@ -52,7 +52,7 @@ def vegilight(vegetable):
         else:
             mid += 1
 
-    with open("https://github.com/FukushimaKaito/heroku-alexa-py/blob/master/lightVegiClass.csv") as csvfile:
+    with open("https://raw.githubusercontent.com/FukushimaKaito/heroku-alexa-py/master/lightVegiClass.csv") as csvfile:
         ldata = csv.reader(csvfile)
     vegclass = [row for row in ldata]
 
