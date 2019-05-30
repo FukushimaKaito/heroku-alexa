@@ -16,18 +16,15 @@ def introduction():
     welcome_msg = render_template('welcome')
     return question(welcome_msg)
 
-
 @ask.intent("YesIntent")
 def start():
     start_msg = render_template('start')
     return question(start_msg)
 
-
 # @ask.intent("AnswerIntent", convert={'prime': int})
 # def answer(prime):
 #     if type(prime) != int:
 #     return statement(msg)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
