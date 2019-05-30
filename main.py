@@ -4,7 +4,6 @@
 import logging
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
-
 import csv
 import urllib.request
 import json
@@ -13,7 +12,6 @@ import dateutil.parser
 app = Flask(__name__)
 ask = Ask(app, "/")
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
-
 
 @ask.launch
 def introduction():
@@ -95,7 +93,6 @@ def vegilight(vegetable):
         msg = render_template('light-missing')
         return question(msg)
 
-
 @ask.intent("CountCheckIntent")
 def countcheck():
     # 24H
@@ -115,7 +112,6 @@ def countcheck():
 
     msg = render_template('count',high=high,mid=mid,low=low)
     return question(msg)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
