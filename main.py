@@ -54,7 +54,7 @@ def vegilight(vegetable,id):
             mid += 1
 
     if vegetable == "インゲン":
-        return question(vegetable.id)
+        return question(id)
     else:
         return question("モヒカン")
 
