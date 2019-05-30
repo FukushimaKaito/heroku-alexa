@@ -48,7 +48,7 @@ def vegilight(vegetable):
     for i in range(1440):
         if ambdata[i]['d2'] > 1000:
             high += 1
-        else if ambdata[i]['d2'] < 300:
+        elif ambdata[i]['d2'] < 300:
             low += 1
         else:
             mid += 1
