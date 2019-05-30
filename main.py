@@ -37,7 +37,7 @@ def now():
     return question(msg)
     
 @ask.intent("AskLightIntent")
-def vegilight(vegetable,id):
+def vegilight(plantclass):
     # 24H分
     url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1440"
     req = urllib.request.Request(url)
@@ -53,10 +53,39 @@ def vegilight(vegetable,id):
         else:
             mid += 1
 
-    if vegetable == "インゲン":
-        return question(id)
+    if plantclass == "陽性植物":
+        if high > 360:
+            msg = render_template('light-just')
+            return question(msg)
+        elif high + mid > 360:
+            msg = render_template('light-higher')
+            return question(msg)
+        else:
+            msg = render_template('light-lack')
+           return question(msg)
+    elif plantclass == "陰性植物":
+        if high > 30 or mid > 180:
+            msg = render_template('light-highest')
+            return question(msg)
+        elif high + mid > 60:
+            msg = render_template('light-just')
+            return question(msg)
+        else:
+            msg = render_template('light-lack')
+            return question(msg)
+    elif plantclass == "半陰性植物":
+        if high > 120 or mid > 180:
+            msg = render_template('light-highest')
+            return question(msg)
+        elif high + mid > 300:
+            msg = render_template('light-just')
+            return question(msg)
+        else:
+            msg = render_template('light-lack')
+            return question(msg)
     else:
-        return question("モヒカン")
+        msg = render_template('light-missing')
+        return question("mag")
 
 if __name__ == '__main__':
     app.run(debug=True)
