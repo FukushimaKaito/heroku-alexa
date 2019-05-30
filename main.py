@@ -29,10 +29,10 @@ def now():
     url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1"
     req = urllib.request.Request(url)
     with urllib.request.urlopen(req) as res:
-        data = json.loads(res.read().decode('utf8'))
+        ambdata = json.loads(res.read().decode('utf8'))
 
-    jsdata = dateutil.parser.parse(data[0]['created'])
-    msg = render_template('now', date=jsdata,vib=data[0]['d1'],light=data[0]['d2'])
+    dtdata = dateutil.parser.parse(ambdata[0]['created'])
+    msg = render_template('now', date=dtdata.strftime('%Y/%m/%d %H:%M:%S'),vib=ambdata[0]['d1'],light=ambdata[0]['d2'])
     return question(msg)
     
 if __name__ == '__main__':
