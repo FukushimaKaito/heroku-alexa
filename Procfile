@@ -1,1 +1,1 @@
-web: gunicorn prime_number:app --log-file -
+web: gunicorn main:app --log-file -
