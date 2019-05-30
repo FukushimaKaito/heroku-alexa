@@ -37,10 +37,10 @@ def now():
     
 @ask.intent("AskLightIntent")
 def vegilight(vegetable):
-    if vagetable == "インゲン"
+    if vagetable == "インゲン":
         return question("インゲン")
-    else
+    else:
         return question("モヒカン")
-        
+
 if __name__ == '__main__':
     app.run(debug=True)
