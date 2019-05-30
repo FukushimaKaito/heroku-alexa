@@ -89,7 +89,7 @@ def vegilight(vegetable):
 
 
 @ask.intent("CountCheckIntent")
-def vegilight(vegetable):
+def count():
     # 24H分
     url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1440"
     req = urllib.request.Request(url)
