@@ -59,7 +59,7 @@ def vegilight(vegetable):
         vegclass = [row for row in ldata]
 
     # positive class
-    if vegetable in vagclass[0]:
+    if vegetable in vegclass[0]:
         if high > 360:
             msg = render_template('light-just')
             return question(msg)
@@ -70,7 +70,7 @@ def vegilight(vegetable):
             msg = render_template('light-lack')
             return question(msg)
     # negative class
-    elif vegetable == vagclass[2]:
+    elif vegetable == vegclass[2]:
         if high > 30 or mid > 180:
             msg = render_template('light-highest')
             return question(msg)
@@ -81,7 +81,7 @@ def vegilight(vegetable):
             msg = render_template('light-lack')
             return question(msg)
     # half class
-    elif vegetable == vagclass[1]:
+    elif vegetable == vegclass[1]:
         if high > 120 or mid > 180:
             msg = render_template('light-highest')
             return question(msg)
