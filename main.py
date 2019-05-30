@@ -87,5 +87,25 @@ def vegilight(vegetable):
         msg = render_template('light-missing')
         return question(msg)
 
+
+@ask.intent("CountCheckIntent")
+def vegilight(vegetable):
+    # 24H分
+    url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1440"
+    req = urllib.request.Request(url)
+    with urllib.request.urlopen(req) as res:
+        ambdata = json.loads(res.read().decode('utf8'))
+
+    high,mid,low=0,0,0
+    for i in range(1440):
+        if ambdata[i]['d2'] > 1000:
+            high += 1
+        elif ambdata[i]['d2'] < 300:
+            low += 1
+        else:
+            mid += 1
+    msg = render_template('count')
+    return question(msg)
+
 if __name__ == '__main__':
     app.run(debug=True)
