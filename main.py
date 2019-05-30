@@ -5,6 +5,7 @@ import logging
 from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
 
+import csv
 import urllib.request
 import json
 import dateutil.parser
@@ -26,7 +27,7 @@ def help():
 
 @ask.intent("AskNowdata")
 def now():
-    #最新1件
+    # least
     url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1"
     req = urllib.request.Request(url)
     with urllib.request.urlopen(req) as res:
@@ -38,7 +39,7 @@ def now():
     
 @ask.intent("AskLightIntent")
 def vegilight(vegetable):
-    # 24H分
+    # 24H = 1440min
     url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1440"
     req = urllib.request.Request(url)
     with urllib.request.urlopen(req) as res:
@@ -53,7 +54,12 @@ def vegilight(vegetable):
         else:
             mid += 1
 
-    if vegetable == "陽性植物":
+    with open("./lightVegiClass.csv") as csvfile:
+        ldata = csv.reader(csvfile)
+    vegclass = [row for row in ldata]
+
+    # positive class
+    if vegetable in vagclass[0]:
         if high > 360:
             msg = render_template('light-just')
             return question(msg)
@@ -63,7 +69,8 @@ def vegilight(vegetable):
         else:
             msg = render_template('light-lack')
             return question(msg)
-    elif vegetable == "陰性植物":
+    # negative class
+    elif vegetable == vagclass[2]:
         if high > 30 or mid > 180:
             msg = render_template('light-highest')
             return question(msg)
@@ -73,7 +80,8 @@ def vegilight(vegetable):
         else:
             msg = render_template('light-lack')
             return question(msg)
-    elif vegetable == "半陰性植物":
+    # half class
+    elif vegetable == vagclass[1]:
         if high > 120 or mid > 180:
             msg = render_template('light-highest')
             return question(msg)
@@ -90,7 +98,7 @@ def vegilight(vegetable):
 
 @ask.intent("CountCheckIntent")
 def countcheck():
-    # 24H分
+    # 24H
     url = "http://ambidata.io/api/v2/channels/10905/data?readKey=7e7df40858ef249c&n=1440"
     req = urllib.request.Request(url)
     with urllib.request.urlopen(req) as res:
