@@ -8,6 +8,7 @@ import csv
 import urllib.request
 import json
 import dateutil.parser
+import os
 
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -52,7 +53,8 @@ def vegilight(vegetable):
         else:
             mid += 1
 
-    with open("https://raw.githubusercontent.com/FukushimaKaito/heroku-alexa-py/master/lightVegiClass.csv") as csvfile:
+    dirpath = os.path.dirname(__file__)
+    with open(dirpath+"/lightVegiClass.csv") as csvfile:
         ldata = csv.reader(csvfile)
     vegclass = [row for row in ldata]
 
