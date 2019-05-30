@@ -62,7 +62,7 @@ def vegilight(plantclass):
             return question(msg)
         else:
             msg = render_template('light-lack')
-           return question(msg)
+            return question(msg)
     elif plantclass == "陰性植物":
         if high > 30 or mid > 180:
             msg = render_template('light-highest')
