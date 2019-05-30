@@ -7,6 +7,7 @@ from flask_ask import Ask, statement, question, session
 
 import urllib.request
 import json
+import dateutil.parser
 
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -30,9 +31,8 @@ def now():
     with urllib.request.urlopen(req) as res:
         data = json.loads(res.read().decode('utf8'))
 
-    jsdata = iso_to_jstdt(data[0]['created'])
-    datetime=dt_to_str(js)
-    msg = render_template('now', date=datetime,vib=data[0]['d1'],light=data[0]['d2'])
+    jsdata = dateutil.parser.parse(data[0]['created'])
+    msg = render_template('now', date=jsdata,vib=data[0]['d1'],light=data[0]['d2'])
     return question(msg)
     
 if __name__ == '__main__':
