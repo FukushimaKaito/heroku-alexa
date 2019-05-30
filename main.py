@@ -54,7 +54,7 @@ def vegilight(vegetable):
         else:
             mid += 1
 
-    with open("./lightVegiClass.csv") as csvfile:
+    with open("lightVegiClass.csv") as csvfile:
         ldata = csv.reader(csvfile)
     vegclass = [row for row in ldata]
 
