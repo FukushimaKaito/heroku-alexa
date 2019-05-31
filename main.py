@@ -92,7 +92,7 @@ def vegilight(vegetable):
             msg = render_template('light-lack')
             return question(msg)
     else:
-        msg = render_template('light-missing')
+        msg = render_template('light-missing',veg=vegetable)
         return question(msg)
 
 @ask.intent("CountCheckIntent")
