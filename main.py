@@ -8,7 +8,6 @@ import csv
 import urllib.request
 import json
 import dateutil.parser
-import os
 
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -46,9 +45,9 @@ def vegilight(vegetable):
 
     high,mid,low=0,0,0
     for i in range(1440):
-        if ambdata[i]['d2'] > 1000:
+        if ambdata[i]['d1'] > 1000:
             high += 1
-        elif ambdata[i]['d2'] < 300:
+        elif ambdata[i]['d1'] < 300:
             low += 1
         else:
             mid += 1
@@ -104,9 +103,9 @@ def countcheck():
 
     high,mid,low=0,0,0
     for i in range(1440):
-        if ambdata[i]['d2'] > 1000:
+        if ambdata[i]['d1'] > 1000:
             high += 1
-        elif ambdata[i]['d2'] < 300:
+        elif ambdata[i]['d1'] < 300:
             low += 1
         else:
             mid += 1
