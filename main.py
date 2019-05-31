@@ -70,7 +70,7 @@ def vegilight(vegetable):
             msg = render_template('light-lack')
             return question(msg)
     # negative class
-    if vegetable == vegclass[2]:
+    elif vegetable in vegclass[2]:
         if high > 30 or mid > 180:
             msg = render_template('light-highest')
             return question(msg)
@@ -81,7 +81,7 @@ def vegilight(vegetable):
             msg = render_template('light-lack')
             return question(msg)
     # half class
-    if vegetable == vegclass[1]:
+    elif vegetable in vegclass[1]:
         if high > 120 or mid > 180:
             msg = render_template('light-highest')
             return question(msg)
@@ -91,9 +91,9 @@ def vegilight(vegetable):
         else:
             msg = render_template('light-lack')
             return question(msg)
-
-    msg = render_template('light-missing',veg=vegetable)
-    return question(msg)
+    else:
+        msg = render_template('light-missing',veg=vegetable)
+        return question(msg)
 
 @ask.intent("CountCheckIntent")
 def countcheck():
